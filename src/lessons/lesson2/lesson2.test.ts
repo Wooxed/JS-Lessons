@@ -47,5 +47,4 @@ test('Task 03', ()=> {
     expect(makeCounter(1).decrease()).toBe(0)
     expect(makeCounter(1).reset()).toBe(0)
     expect(makeCounter(5).set()).toBe(5)
-
 })

@@ -25,13 +25,12 @@ console.log('lesson 2');
 //Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 
 function sum(a: number) {
-    return (b:number) => {
+    return (b: number) => {
         return a + b
     }
 }
+
 alert(sum(3)(6))
-
-
 
 
 // Task 02
@@ -97,22 +96,105 @@ function makeCounter2(startCounter: number) {
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
-function superSum(args: number, argsToString = '0', size=args) {
+function superSum(args: number, argsToString = '0', size = args) {
     if (args === 0) {
-        return argsToString.split('' || ',').reduce((acc, el, i) => i <size ? acc + Number(el) : acc, 0)
+        return argsToString.split('' || ',').reduce((acc, el, i) => i < size ? acc + Number(el) : acc, 0)
     }
     return (...n: any) => {
         argsToString = argsToString + n + ','
         return superSum(n.length > 1 && (args - n.length) >= 0 ? args - n.length : args - 1, argsToString, size)
     }
 }
+
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
 
+// Вычислить сумму чисел до данного
+function sumTo(n: number) {
+    let result = 0
+    for (let i = 1; i <= n; i++) {
+        result = result + i
+    }
+    return result
+}
 
+function sumTo2(n: number): number {
+    if (n === 1) {
+        return 1
+    } else {
+        return n + sumTo2(n - 1)
+    }
+}
+
+function sumTo3(n: number) {
+    return n * (n + 1) / 2
+}
+
+//  Вычислить факториал
+function factorial(n: number): number {
+    if (n === 1) {
+        return 1
+    } else {
+        return n * factorial(n - 1)
+    }
+}
+
+
+// Числа Фибоначчи
+function fib(n: number): number {
+    if (n === 1 || n === 2) {
+        return 1
+    } else {
+        return fib(n - 1) + fib(n - 2)
+    }
+}
+
+// Вывод односвязного списка
+let list = {
+    value: 1,
+    next: {
+
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+}
+
+function printList(list: any): any {
+    let tmp = list
+    while (tmp) {
+        console.log(tmp.value)
+        tmp = tmp.next
+    }
+}
+
+printList(list)
+
+function printList2(list: any): any {
+    console.log(list.value)
+    if (list.next) {
+        printList2(list.next)
+    }
+}
+
+printList2(list)
+
+// Вывод односвязного списка в обратном порядке
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
+const makeFlat = function (arr: Array<any>): Array<any> {
+    return arr.reduce((acc, el) => {
+        return acc.concat(el instanceof Array ? makeFlat(el) : el)
+    }, [])
+}
 
+console.log(makeFlat([1, 2, 3, [4, 5, 6, [7, 8, [9, 10]]]]))
 // just a plug
-export default () => {};
+export default () => {
+};
